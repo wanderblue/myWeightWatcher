@@ -102,7 +102,7 @@ class App extends Component {
 
 
           <Route exact path="/saved" component={SaveBooks} />
-          
+          <Route exact path="/search" component={SearchBooks} />
           <Route exact path="/saved/:id" component={SaveBooks} />
         
         

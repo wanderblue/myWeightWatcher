@@ -5,13 +5,14 @@ const SearchForm = props => {
     return (
         <form>
             <div className="form-group">
-                <label className="BookSearchLabel"><h3>Search For Book</h3></label>
+                
+                <div className="BookSearchLabel"><h6>Please include the quantity and measure</h6></div>
                 <br></br>
                 <input className="col-11 form-control"
                     value={props.search}
                     type="text"
                     name="searchBook"
-                    placeholder="Game of Thrones"
+                    placeholder=" one large apple"
                     onChange={props.handleInputChange}
                 />
             </div>

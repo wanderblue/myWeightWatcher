@@ -4,13 +4,15 @@ import API from "../utils/API";
 import { Container, Row, Col } from "../components/Grid";
 import SearchForm from "../components/SearchForm";
 import SearchResult from "../components/SearchResult"
-
+import Navbar from '../components/navbar'
+import dotenv from 'dotenv'
+const APP = require('dotenv').config('.env')
 
 class SearchBooks extends Component {
     //create state
     state = {
         search: "",
-        books: [],
+        books: [{calories: "", sugar: "", fat: ""}],
         error: "",
         message: ""
     };
@@ -24,33 +26,38 @@ class SearchBooks extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         // once it clicks it connects to the google book api with the search value
-        API.getGoogleSearchBooks(this.state.search)
-            .then(res => {
-                if (res.data.items === "error") {
-                    throw new Error(res.data.items);
-                }
-                else {
+        let q = this.state.search.replace(/\s/g, "%20");
+        console.log("$$$$$$$$$$>", APP.API_ID)
+
+       
+ //    API. getNutrition(this.state.search)
+ API. getNutrition(q)
+           .then(res => {
+               console.log(">>>>>",res.data)
+      //          if (res.data.items === "error") {
+        //            throw new Error(res.data.items);
+          //      }
+            //    else {
                     // store response in a array
-                    let results = res.data.items
+                    //let results = res.data.items
+                    let results = res.data.totalNutrients
                     //map through the array 
-                    results = results.map(result => {
+//                   results = results.map(result => {
                         //store each book information in a new object 
-                        result = {
-                            key: result.id,
-                            id: result.id,
-                            title: result.volumeInfo.title,
-                            author: result.volumeInfo.authors,
-                            description: result.volumeInfo.description,
-                            image: result.volumeInfo.imageLinks.thumbnail,
-                            link: result.volumeInfo.infoLink
-                        }
-                        return result;
-                    })
+                      let  result = [{
+                           
+                            calories: results.ENERC_KCAL.quantity,
+                            sugar: results.SUGAR.quantity,
+                            fat: results.FASAT.quantity,
+                      }]
+                      console.log(">>>>>",result)
+  //                      return result;
+    //                })
                     // reset the sate of the empty books array to the new arrays of objects with properties geting back from the response
-                    this.setState({ books: results, error: "" })
-                }
+                    this.setState({ books: result, error: "" })
+              //  }
             })
-            .catch(err => this.setState({ error: err.items }));
+            //.catch(err => this.setState({ error: err.items }));
     }
 
     handleSavedButton = event => {
@@ -65,6 +72,9 @@ class SearchBooks extends Component {
     }
     render() {
         return (
+            <>
+            <Navbar  />             
+            <h3>Search Nutrition</h3>
             <Container fluid>
                 <Container>
                     <Row>
@@ -76,12 +86,13 @@ class SearchBooks extends Component {
                         </Col>
                     </Row>
                 </Container>
-                <div>HHHHHHHHHHHHH {this.props.user}</div>
+                
                 <br></br>
                 <Container>
                     <SearchResult books={this.state.books} handleSavedButton={this.handleSavedButton} />
                 </Container>
             </Container>
+            </>
         )
     }
 
