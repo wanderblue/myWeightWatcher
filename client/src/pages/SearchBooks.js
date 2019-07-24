@@ -74,7 +74,7 @@ class SearchBooks extends Component {
         return (
             <>
             <Navbar  />             
-            <h3>Search Nutrition</h3>
+            <h3>Search Food</h3>
             <Container fluid>
                 <Container>
                     <Row>
