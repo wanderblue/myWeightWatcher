@@ -26,6 +26,8 @@ import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
+import YourDashboard from "./views/YourDashboard/YourDashboard";
+
 
 class App extends Component {
   constructor() {
@@ -84,7 +86,7 @@ class App extends Component {
 
           exact path="/myweight"
          
-         render={(props) => <MyWatcher {...props} user={this.state.username} />}
+         render={(props) => <MyWatcher1 {...props} user={this.state.username} />}
 
             />
 
@@ -96,6 +98,9 @@ class App extends Component {
 
             />
  
+ <Route exact path="/cc" component={YourDashboard} />
+
+
         <Route exact path="/logout" component={Logout} />
          <Route exact path="/books" component={Books} />
           <Route exact path="/books/:id" component={Detail} />

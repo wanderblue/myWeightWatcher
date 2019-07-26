@@ -1,0 +1,19 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    background: var(--theme-primary);
+    color: rgb(106, 50, 117);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+}
+
+header > img {
+    margin-right: 5px;
+}
