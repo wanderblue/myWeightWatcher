@@ -13,12 +13,13 @@ const userSchema = new Schema({
 
 // Define schema methods
 userSchema.methods = {
-	checkPassword: function (inputPassword) {
-		return bcrypt.compareSync(inputPassword, this.password)
-	},
-	hashPassword: plainTextPassword => {
-		return bcrypt.hashSync(plainTextPassword, 10)
-	}
+//	checkPassword: function (inputPassword) {
+//		return bcrypt.compareSync(inputPassword, this.password)
+		
+//	},
+//	hashPassword: plainTextPassword => {
+//		return bcrypt.hashSync(plainTextPassword, 10)
+//	}
 }
 
 // Define hooks for pre-saving
@@ -29,7 +30,7 @@ userSchema.pre('save', function (next) {
 	} else {
 		console.log('models/user.js hashPassword in pre save');
 		
-		this.password = this.hashPassword(this.password)
+	//	this.password = this.hashPassword(this.password)
 	
 		next()
 	}

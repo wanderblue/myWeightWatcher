@@ -13,9 +13,9 @@ const strategy = new LocalStrategy(
 			if (!user) {
 				return done(null, false, { message: 'Incorrect username' })
 			}
-			if (!user.checkPassword(password)) {
-				return done(null, false, { message: 'Incorrect password' })
-			}
+	//		if (!user.validPassword(password)) {
+	//			return done(null, false, { message: 'Incorrect password' })
+	//		}
 			return done(null, user)
 		})
 	}
