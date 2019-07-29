@@ -26,11 +26,19 @@ class LoginForm extends Component {
         event.preventDefault()
         console.log('handleSubmit')
 
+       
+
         axios
             .post('/user/login', {
                 username: this.state.username,
                 password: this.state.password
-            })
+            },
+            {headers: {'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
+        }
+        }
+            )
             .then(response => {
                 console.log('login response: ')
                 console.log(response)

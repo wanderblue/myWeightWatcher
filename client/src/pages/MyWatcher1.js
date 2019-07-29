@@ -71,7 +71,7 @@ class Books extends Component {
   
 
     //console.log("KKKKK",this.state.books),
-    this.state.books.forEach(book => (
+    this.state.books.map(book => (
       weightArray.push(book.weight),
       labelArray.push(book.days)
        
