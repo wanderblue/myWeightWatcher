@@ -40,7 +40,13 @@ class Books extends Component {
       )
       .catch(err => console.log(err));
   };
-
+  //function to remove book by id
+  handleDeleteButton = id => {
+    API.deleteBook(id)
+        .then(res => this.componentDidMount())
+        .catch(err => console.log(err))
+}
+  
   loadBooks = () => {
     API.getUser(this.props.user)
       .then(response => response.json())
@@ -181,9 +187,11 @@ class Books extends Component {
                   <ListItem key={book._id}>
                    
                       <strong>
-                {book.title} : {book.weight} lb at (Day {book.days}) {moment(book.date).format( 'LLL')}
+                {book.title} : {book.weight} lb on (Day {book.days}) entered at {moment(book.date).format( 'LLL')}
                    
                       </strong>
+                      
+                      <DeleteBtn onClick={() => this.handleDeleteButton(book._id)} />
                   </ListItem>
                  
                 ))}

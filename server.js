@@ -52,6 +52,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 
+app.set('trust proxy', 1)
 
 // Routes
 // Define API routes here
